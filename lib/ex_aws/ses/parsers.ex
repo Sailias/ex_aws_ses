@@ -115,8 +115,6 @@ if Code.ensure_loaded?(SweetXml) do
       {:ok, Map.put(resp, :body, parsed_body)}
     end
 
-    %{body: "<GetSendQuotaResponse xmlns=\"http://ses.amazonaws.com/doc/2010-12-01/\">\n  <GetSendQuotaResult>\n    <Max24HourSend>400000.0</Max24HourSend>\n    <SentLast24Hours>6836.0</SentLast24Hours>\n    <MaxSendRate>200.0</MaxSendRate>\n  </GetSendQuotaResult>\n  <ResponseMetadata>\n    <RequestId>0d997bef-938e-4576-95f0-896aae39b879</RequestId>\n  </ResponseMetadata>\n</GetSendQuotaResponse>\n",
-
     def parse({:ok, %{body: xml} = resp}, :get_send_quota) do
       parsed_body = SweetXml.xpath(xml, ~x"//GetSendQuotaResponse",
         max_24_hour_send: ~x"./Max24HourSend/text()"s,
