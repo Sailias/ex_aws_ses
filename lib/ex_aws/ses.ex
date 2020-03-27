@@ -268,6 +268,10 @@ defmodule ExAws.SES do
     )
   end
 
+  def get_send_quota() do
+    request(:get_send_quota, %{})
+  end
+
   defp format_dst(dst, root \\ "destination") do
     dst = Enum.reduce([:to, :bcc, :cc], %{}, fn key, acc ->
       case Map.fetch(dst, key) do
